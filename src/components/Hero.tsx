@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useMotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Magnetic from "./Magnetic";
@@ -39,7 +39,7 @@ function Typewriter() {
     }, reverse ? 30 : 70);
 
     return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse, phrases]);
+  }, [subIndex, index, reverse]);
 
   return (
     <span className="text-xs font-bold uppercase tracking-[0.2em] bg-clip-text text-transparent bg-gradient-to-r from-secondary via-white to-secondary bg-[length:200%_auto] animate-[pulse_4s_ease-in-out_infinite]">
@@ -50,51 +50,115 @@ function Typewriter() {
 }
 
 export default function Hero() {
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    const targetX = clientX / (typeof window !== 'undefined' ? window.innerWidth : 1000);
+    const targetY = clientY / (typeof window !== 'undefined' ? window.innerHeight : 1000);
+    mouseX.set(targetX);
+    mouseY.set(targetY);
+  };
+
+  const imageX = useTransform(mouseX, [0, 1], ["-3%", "3%"]);
+  const imageY = useTransform(mouseY, [0, 1], ["-3%", "3%"]);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.25,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40, filter: "blur(12px)", scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      filter: "blur(0px)",
+      scale: 1,
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }, // Cinematic easing
     },
   };
 
+  // Pre-generate stable sparkles to prevent hydration mismatch
+  const [sparkles, setSparkles] = useState<{id: number, size: number, x: number, y: number, duration: number, delay: number}[]>([]);
+  useEffect(() => {
+    setSparkles(
+      Array.from({ length: 20 }).map((_, i) => ({
+        id: i,
+        size: Math.random() * 3 + 1,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        duration: Math.random() * 15 + 10,
+        delay: Math.random() * 5,
+      }))
+    );
+  }, []);
+
   return (
-    <section className="relative h-[100svh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax effect */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/gallery/wedding-setup.jpeg"
-          alt="Luxury Event Setup"
-          fill
-          priority
-          className="object-cover object-center scale-105"
-        />
+    <section 
+      onMouseMove={handleMouseMove}
+      className="relative h-[100svh] min-h-[600px] w-full flex items-center justify-center overflow-hidden"
+    >
+      {/* Background Image with Mouse Parallax effect */}
+      <div className="absolute inset-0 z-0 bg-background">
+        <motion.div style={{ x: imageX, y: imageY, scale: 1.1 }} className="absolute inset-0 w-full h-full">
+          <Image
+            src="/gallery/wedding-setup.jpeg"
+            alt="Luxury Event Setup"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </motion.div>
         {/* Gradients for text readability and depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/90" />
         <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
       </div>
 
+      {/* Floating Sparkles Layer */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {sparkles.map((sparkle) => (
+          <motion.div
+            key={sparkle.id}
+            className="absolute rounded-full bg-secondary"
+            style={{
+              width: sparkle.size,
+              height: sparkle.size,
+              left: `${sparkle.x}%`,
+              top: `${sparkle.y}%`,
+              boxShadow: "0 0 10px 2px rgba(201,168,76,0.6)",
+            }}
+            animate={{
+              y: [0, -300],
+              opacity: [0, 0.8, 0],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: sparkle.duration,
+              repeat: Infinity,
+              delay: sparkle.delay,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </div>
+
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center pointer-events-none">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="flex flex-col items-center gap-6"
         >
-          <motion.div variants={itemVariants} className="inline-block h-[40px]">
+          <motion.div variants={itemVariants} className="inline-block h-[40px] pointer-events-auto">
             <div className="relative inline-flex items-center justify-center min-w-[300px] h-full rounded-full bg-white/5 px-6 border border-white/10 backdrop-blur-md shadow-2xl">
               <Typewriter />
             </div>
@@ -102,7 +166,7 @@ export default function Hero() {
 
           <motion.h1
             variants={itemVariants}
-            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]"
+            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
           >
             Creating <span className="text-secondary italic">Memorable</span>{" "}
             <br className="hidden sm:block" />
@@ -111,21 +175,21 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/80 leading-relaxed"
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-white/90 leading-relaxed font-light drop-shadow-lg"
           >
             Transforming your visions into breathtaking realities. From grand weddings to exclusive corporate gatherings, we orchestrate perfection down to the last detail.
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
+            className="mt-10 flex flex-col sm:flex-row items-center gap-6 w-full justify-center pointer-events-auto"
           >
             <Magnetic>
               <a
                 href="https://wa.me/2348109870349"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-white shadow-lg transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 cursor-pointer"
+                className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-white shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 cursor-pointer"
               >
                 Start Planning Today
               </a>
@@ -133,7 +197,7 @@ export default function Hero() {
             <Magnetic>
               <a
                 href="#services"
-                className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 text-base font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-105 active:scale-95 cursor-pointer"
+                className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full border border-white/30 bg-white/10 px-8 text-base font-medium text-white backdrop-blur-md transition-all hover:bg-white/20 hover:scale-105 hover:border-white/50 active:scale-95 cursor-pointer"
               >
                 Explore Services
               </a>
@@ -144,18 +208,18 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 pointer-events-none"
       >
-        <span className="text-xs uppercase tracking-widest text-white/50 font-medium">
-          Scroll
+        <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-semibold">
+          Scroll to explore
         </span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 10, 0], opacity: [0.3, 1, 0.3] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-0.5 h-12 bg-gradient-to-b from-secondary to-transparent rounded-full"
+          className="w-[2px] h-12 bg-gradient-to-b from-secondary via-secondary to-transparent rounded-full"
         />
       </motion.div>
     </section>
