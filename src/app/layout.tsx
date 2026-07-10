@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -17,14 +17,35 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#4A0E4E",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://bolacious-events.netlify.app"),
-  title: "Bolacious Events | Creating Memorable Moments",
-  description: "Bolacious Events specializes in creating memorable moments with excellence. We provide top-tier event planning, catering, and ushering services in Nigeria.",
-  keywords: ["event planning", "catering", "ushers", "weddings", "Bolacious Events", "Nigeria events"],
+  title: {
+    default: "Bolacious Events | Premier Event Planning in Nigeria",
+    template: "%s | Bolacious Events"
+  },
+  description: "Bolacious Events is Nigeria's premier luxury event management company. We specialize in bespoke event planning, elegant styling, professional ushering, and gourmet catering to create unforgettable experiences.",
+  keywords: ["Event Planner Lagos", "Wedding Planner Nigeria", "Luxury Event Management", "Corporate Event Organizer", "Professional Ushers Nigeria", "Event Catering Lagos", "Bolacious Events", "Event Architect", "Nigeria"],
+  authors: [{ name: "Bolacious Events", url: "https://bolacious-events.netlify.app" }],
+  creator: "Bolacious Events",
+  publisher: "Bolacious Events",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Bolacious Events",
-    description: "Creating Memorable Moments with Excellence.",
+    title: "Bolacious Events | Premier Event Architects",
+    description: "Transforming your visions into breathtaking realities. From grand weddings to exclusive corporate gatherings, we orchestrate perfection down to the last detail in Nigeria.",
     url: "https://bolacious-events.netlify.app",
     siteName: "Bolacious Events",
     images: [
@@ -36,6 +57,24 @@ export const metadata: Metadata = {
     ],
     locale: "en_NG",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bolacious Events | Premier Event Architects",
+    description: "Transforming your visions into breathtaking realities in Nigeria.",
+    images: ["/images/logo.jpeg"],
+    creator: "@bolaciousevents",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
