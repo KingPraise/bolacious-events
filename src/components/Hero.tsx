@@ -49,17 +49,16 @@ export default function Hero() {
           className="flex flex-col items-center gap-6"
         >
           <motion.div variants={itemVariants} className="inline-block">
-            <div className="relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden shadow-lg shadow-secondary/20">
-              {/* Animated gradient border */}
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 via-primary/80 to-secondary/40 animate-[spin_4s_linear_infinite] w-[200%] h-[200%] left-[-50%] top-[-50%]" />
-              
-              <span className="relative flex items-center gap-2.5 rounded-full bg-background/80 backdrop-blur-md px-5 py-2 text-sm font-medium text-white border border-white/10">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary shadow-[0_0_8px_rgba(201,168,76,0.8)]"></span>
-                </span>
-                Nigeria's Premier Event Architects
+            <div className="relative inline-flex items-center gap-3 rounded-full bg-white/5 px-6 py-2 border border-white/10 backdrop-blur-md shadow-2xl">
+              <svg className="w-3.5 h-3.5 text-secondary animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L14.6 9.4L22 12L14.6 14.6L12 22L9.4 14.6L2 12L9.4 9.4L12 2Z" />
+              </svg>
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-white/90 mt-[1px]">
+                Crafting Unforgettable Experiences
               </span>
+              <svg className="w-3.5 h-3.5 text-secondary animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L14.6 9.4L22 12L14.6 14.6L12 22L9.4 14.6L2 12L9.4 9.4L12 2Z" />
+              </svg>
             </div>
           </motion.div>
 
