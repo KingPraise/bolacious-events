@@ -49,9 +49,18 @@ export default function Hero() {
           className="flex flex-col items-center gap-6"
         >
           <motion.div variants={itemVariants} className="inline-block">
-            <span className="inline-flex items-center rounded-full border border-secondary/30 bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary backdrop-blur-sm">
-              ✨ Premium Event Management in Nigeria
-            </span>
+            <div className="relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden shadow-lg shadow-secondary/20">
+              {/* Animated gradient border */}
+              <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 via-primary/80 to-secondary/40 animate-[spin_4s_linear_infinite] w-[200%] h-[200%] left-[-50%] top-[-50%]" />
+              
+              <span className="relative flex items-center gap-2.5 rounded-full bg-background/80 backdrop-blur-md px-5 py-2 text-sm font-medium text-white border border-white/10">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary shadow-[0_0_8px_rgba(201,168,76,0.8)]"></span>
+                </span>
+                Nigeria's Premier Event Architects
+              </span>
+            </div>
           </motion.div>
 
           <motion.h1

@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -44,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} scroll-smooth`}>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-white">
+        <LoadingScreen />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

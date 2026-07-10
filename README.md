@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bolacious Events 🎈
+
+Welcome to the official source code for **Bolacious Events**, a premium event management company based in Nigeria. This platform serves as a digital storefront to showcase our expertise in Event Planning, Styling, Professional Ushering, and Catering services.
+
+## Overview
+
+The Bolacious Events website is built as a highly performant, single-page application (SPA) with a focus on immersive user experience, driven by fluid animations and modern design paradigms.
+
+### Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Components**: [shadcn/ui](https://ui.shadcn.com/) (Radix UI + Tailwind)
+- **Icons**: `react-icons` (Feather & FontAwesome)
+- **Language**: TypeScript
+
+## Key Features
+
+- **The 'Animate UI' Philosophy**: Extensive use of physics-based entrance animations, staggering, and scroll-linked reveals (via `framer-motion`) to deliver a luxury feel.
+- **Dynamic Loading Screen**: A custom 3D unfolding logo animation accompanied by cinematic background splits.
+- **Glassmorphism Design**: Frosted glass effects heavily utilized in the navigation bar and hero badges.
+- **Direct WhatsApp Integration**: Integrated Floating Action Button (FAB) and direct Contact links routing straight to the Bolacious Events WhatsApp line for immediate conversions.
+- **Masonry Gallery**: An intricate, responsive CSS-based layout highlighting past events, featuring a modal lightbox for deeper viewing.
+- **The Silhouette Footer**: A custom multi-layered SVG design blending the brand colors (Purple `#4A0E4E` and Gold `#C9A84C`) into an elegant skyline-like wave.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is configured for seamless deployment on **Netlify**.
 
-## Learn More
+1. Push your code to GitHub.
+2. Link the repository to your Netlify account.
+3. The `netlify.toml` file will automatically handle the build commands (`npm run build`) and output directory configuration (`.next`).
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is proprietary. All rights reserved by Bolacious Events.
