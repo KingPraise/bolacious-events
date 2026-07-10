@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Magnetic from "./Magnetic";
 
 const phrases = [
   "CRAFTING UNFORGETTABLE EXPERIENCES",
@@ -119,20 +120,24 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
           >
-            <a
-              href="https://wa.me/2348109870349"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-white shadow-lg transition-all hover:bg-primary/90 hover:scale-105 active:scale-95"
-            >
-              Start Planning Today
-            </a>
-            <a
-              href="#services"
-              className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 text-base font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-105 active:scale-95"
-            >
-              Explore Services
-            </a>
+            <Magnetic>
+              <a
+                href="https://wa.me/2348109870349"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-white shadow-lg transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                Start Planning Today
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="#services"
+                className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 text-base font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                Explore Services
+              </a>
+            </Magnetic>
           </motion.div>
         </motion.div>
       </div>

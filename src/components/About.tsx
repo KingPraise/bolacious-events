@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { FiCheckCircle } from "react-icons/fi";
+import { useRef } from "react";
 
 const features = [
   "Meticulous Event Planning",
@@ -12,8 +13,15 @@ const features = [
 ];
 
 export default function About() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+
   return (
-    <section id="about" className="py-24 bg-background relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -z-10" />
 
@@ -28,14 +36,16 @@ export default function About() {
             className="relative"
           >
             <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/gallery/ushers-team.jpeg"
-                alt="Bolacious Events Team"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <motion.div style={{ y, scale: 1.15 }} className="absolute inset-0">
+                <Image
+                  src="/gallery/ushers-team.jpeg"
+                  alt="Bolacious Events Team"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
               
               {/* Experience Badge */}
               <motion.div

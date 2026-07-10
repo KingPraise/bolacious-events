@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { FiCalendar, FiStar, FiUsers, FiCoffee } from "react-icons/fi";
+import { useRef } from "react";
 
 const services = [
   {
@@ -55,8 +56,15 @@ const cardVariants: Variants = {
 };
 
 export default function Services() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+
   return (
-    <section id="services" className="py-24 bg-muted/30">
+    <section id="services" ref={sectionRef} className="py-24 bg-muted/30">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
@@ -111,12 +119,14 @@ export default function Services() {
                 {/* Image Header */}
                 <div className="relative h-48 w-full overflow-hidden">
                   <div className="absolute inset-0 bg-primary/20 z-10 mix-blend-multiply group-hover:bg-transparent transition-colors duration-500" />
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                  <motion.div style={{ y: imgY, scale: 1.15 }} className="absolute inset-0">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </motion.div>
                   {/* Floating Icon */}
                   <div className="absolute -bottom-6 right-6 z-20 w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg transform group-hover:-translate-y-2 transition-transform duration-300">
                     <Icon size={20} />

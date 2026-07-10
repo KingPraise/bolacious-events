@@ -12,12 +12,12 @@ const galleryImages = [
   { id: 4, src: "/gallery/ushers-1.jpeg", alt: "Usher Assisting Guests", span: "aspect-square" },
   { id: 5, src: "/gallery/catering-1.jpeg", alt: "Gourmet Catering Menu", span: "aspect-[4/3]" },
   { id: 6, src: "/gallery/catering-2.jpeg", alt: "Small Chops and Appetizers", span: "aspect-square" },
-  { id: 7, src: "/gallery/catering-3.jpeg", alt: "Exquisite Dessert Table", span: "aspect-[3/4]" },
+  { id: 7, src: "/gallery/cake-1.jpeg", alt: "Exquisite Dessert Table", span: "aspect-[3/4]" },
   { id: 8, src: "/gallery/event-stage.jpeg", alt: "Grand Event Stage", span: "aspect-[16/9]" },
-  { id: 9, src: "/gallery/ushers-2.jpeg", alt: "Corporate Event Ushers", span: "aspect-square" },
-  { id: 10, src: "/gallery/event-lights.jpeg", alt: "Ambient Event Lighting", span: "aspect-[4/3]" },
-  { id: 11, src: "/gallery/ushers-3.jpeg", alt: "Welcoming Guests", span: "aspect-square" },
-  { id: 12, src: "/gallery/table-setting.jpeg", alt: "Luxurious Table Setting", span: "aspect-[3/4]" },
+  { id: 9, src: "/gallery/ushers-posing.jpeg", alt: "Corporate Event Ushers", span: "aspect-square" },
+  { id: 10, src: "/gallery/cake-2.jpeg", alt: "Beautiful Wedding Cake", span: "aspect-[4/3]" },
+  { id: 11, src: "/gallery/small-chops.jpeg", alt: "Delicious Small Chops", span: "aspect-square" },
+  { id: 12, src: "/gallery/event-table.jpeg", alt: "Luxurious Table Setting", span: "aspect-[3/4]" },
 ];
 
 export default function Gallery() {
