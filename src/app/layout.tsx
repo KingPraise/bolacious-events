@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -93,6 +94,7 @@ export default function RootLayout({
 
         <SmoothScroll>
           <CustomCursor />
+          <ScrollToTop />
           <LoadingScreen />
           <Navbar />
           <main className="flex-grow">{children}</main>
