@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer className="relative mt-20 bg-[#1A051D] text-white pt-24 pb-12 overflow-hidden">
       {/* Background fill behind waves */}
-      <div className="absolute top-0 left-0 w-full h-[120px] bg-background z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-[80px] md:h-[120px] bg-background z-0"></div>
 
       {/* Silhouette layered waves */}
       <div className="absolute top-0 left-0 w-full h-[80px] md:h-[120px] overflow-hidden z-0">
