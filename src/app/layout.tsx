@@ -85,7 +85,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} scroll-smooth`}>
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-white">
+      <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-white relative">
+        {/* Global Watermark */}
+        <div className="fixed inset-0 z-50 pointer-events-none flex items-center justify-center opacity-[0.03] mix-blend-multiply dark:mix-blend-lighten overflow-hidden">
+          <img src="/images/logo.jpeg" alt="" className="w-[150vw] sm:w-[80vw] max-w-[1000px] h-auto object-contain grayscale" />
+        </div>
+
         <SmoothScroll>
           <CustomCursor />
           <LoadingScreen />
