@@ -4,12 +4,13 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
+const phrases = [
+  "CRAFTING UNFORGETTABLE EXPERIENCES",
+  "NIGERIA'S PREMIER EVENT ARCHITECTS",
+  "EXCELLENCE IN EVERY DETAIL"
+];
+
 function Typewriter() {
-  const phrases = [
-    "CRAFTING UNFORGETTABLE EXPERIENCES",
-    "NIGERIA'S PREMIER EVENT ARCHITECTS",
-    "EXCELLENCE IN EVERY DETAIL"
-  ];
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
