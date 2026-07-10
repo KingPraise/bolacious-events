@@ -9,10 +9,15 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     // Force scroll to top on page load/refresh
-    window.scrollTo(0, 0);
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
+    
+    window.scrollTo(0, 0);
+    
+    // Fallback for mobile browsers and Next.js router
+    const timeout1 = setTimeout(() => window.scrollTo(0, 0), 50);
+    const timeout2 = setTimeout(() => window.scrollTo(0, 0), 200);
 
     const toggleVisibility = () => {
       if (window.scrollY > 400) {
@@ -23,7 +28,11 @@ export default function ScrollToTop() {
     };
 
     window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
   }, []);
 
   const scrollToTop = () => {
