@@ -90,9 +90,9 @@ export default function Hero() {
   const [sparkles, setSparkles] = useState<{id: number, size: number, x: number, y: number, duration: number, delay: number}[]>([]);
   useEffect(() => {
     setSparkles(
-      Array.from({ length: 20 }).map((_, i) => ({
+      Array.from({ length: 40 }).map((_, i) => ({
         id: i,
-        size: Math.random() * 3 + 1,
+        size: Math.random() * 4 + 2, // Size between 2px and 6px
         x: Math.random() * 100,
         y: Math.random() * 100,
         duration: Math.random() * 15 + 10,
@@ -127,18 +127,18 @@ export default function Hero() {
         {sparkles.map((sparkle) => (
           <motion.div
             key={sparkle.id}
-            className="absolute rounded-full bg-secondary"
+            className="absolute rounded-full bg-[#FFD700]"
             style={{
               width: sparkle.size,
               height: sparkle.size,
               left: `${sparkle.x}%`,
               top: `${sparkle.y}%`,
-              boxShadow: "0 0 10px 2px rgba(201,168,76,0.6)",
+              boxShadow: "0 0 15px 4px rgba(255, 215, 0, 0.8)",
             }}
             animate={{
               y: [0, -300],
-              opacity: [0, 0.8, 0],
-              scale: [1, 1.5, 1],
+              opacity: [0, 1, 0],
+              scale: [1, 2, 1],
             }}
             transition={{
               duration: sparkle.duration,
