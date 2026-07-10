@@ -49,15 +49,40 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function Stats() {
   return (
-    <section className="py-20 relative bg-[#1A051D] overflow-hidden">
-      {/* Decorative SVG wave at top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none transform rotate-180">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[40px] md:h-[60px]">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background"></path>
-        </svg>
+    <section className="py-24 md:py-32 relative bg-[#1A051D] overflow-hidden mt-12 md:mt-20">
+      
+      {/* Top Background fill behind waves */}
+      <div className="absolute top-0 left-0 w-full h-[60px] md:h-[80px] bg-background z-0"></div>
+
+      {/* Top Silhouette layered waves (flowing down into Stats) */}
+      <div className="absolute top-0 left-0 w-full h-[60px] md:h-[80px] overflow-hidden z-0">
+        <div className="absolute bottom-0 left-0 w-[200%] h-full flex animate-wave-slow">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-secondary/20">
+            <path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 V120 H0 Z" />
+          </svg>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-secondary/20">
+            <path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 V120 H0 Z" />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 left-0 w-[200%] h-full flex animate-wave-medium">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-primary/60">
+            <path d="M0,70 C200,10 400,130 600,70 C800,10 1000,130 1200,70 V120 H0 Z" />
+          </svg>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-primary/60">
+            <path d="M0,70 C200,10 400,130 600,70 C800,10 1000,130 1200,70 V120 H0 Z" />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 left-0 w-[200%] h-full flex animate-wave-fast">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-[#1A051D]">
+            <path d="M0,80 C250,140 350,20 600,80 C850,140 950,20 1200,80 V120 H0 Z" />
+          </svg>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-[#1A051D]">
+            <path d="M0,80 C250,140 350,20 600,80 C850,140 950,20 1200,80 V120 H0 Z" />
+          </svg>
+        </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10 pt-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10 pt-8 pb-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x-0 md:divide-x divide-white/10">
           {statsData.map((stat, index) => (
             <motion.div
@@ -77,11 +102,34 @@ export default function Stats() {
         </div>
       </div>
       
-      {/* Decorative SVG wave at bottom */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[40px] md:h-[60px]">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background"></path>
-        </svg>
+      {/* Bottom Silhouette layered waves (flowing down into next section) */}
+      <div className="absolute bottom-0 left-0 w-full h-[60px] md:h-[80px] overflow-hidden z-0 rotate-180">
+        {/* The background fill behind the inverted waves needs to be the next section's color, which is background */}
+        <div className="absolute bottom-0 left-0 w-full h-[60px] md:h-[80px] bg-background z-0"></div>
+        <div className="absolute bottom-0 left-0 w-[200%] h-full flex animate-wave-slow">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-secondary/20">
+            <path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 V120 H0 Z" />
+          </svg>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-secondary/20">
+            <path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 V120 H0 Z" />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 left-0 w-[200%] h-full flex animate-wave-medium">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-primary/60">
+            <path d="M0,70 C200,10 400,130 600,70 C800,10 1000,130 1200,70 V120 H0 Z" />
+          </svg>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-primary/60">
+            <path d="M0,70 C200,10 400,130 600,70 C800,10 1000,130 1200,70 V120 H0 Z" />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 left-0 w-[200%] h-full flex animate-wave-fast">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-[#1A051D]">
+            <path d="M0,80 C250,140 350,20 600,80 C850,140 950,20 1200,80 V120 H0 Z" />
+          </svg>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-1/2 h-full flex-shrink-0 fill-[#1A051D]">
+            <path d="M0,80 C250,140 350,20 600,80 C850,140 950,20 1200,80 V120 H0 Z" />
+          </svg>
+        </div>
       </div>
     </section>
   );

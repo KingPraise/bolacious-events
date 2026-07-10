@@ -9,14 +9,14 @@ export default function Contact() {
     {
       icon: FiPhone,
       title: "Call Us",
-      details: "+234 810 987 0349",
+      details: "0810 987 0349",
       href: "tel:+2348109870349",
     },
     {
       icon: FiMail,
       title: "Email Us",
-      details: "hello@bolaciousevents.com",
-      href: "mailto:hello@bolaciousevents.com",
+      details: "bolaciousevents@gmail.com",
+      href: "mailto:bolaciousevents@gmail.com",
     },
     {
       icon: FiMapPin,

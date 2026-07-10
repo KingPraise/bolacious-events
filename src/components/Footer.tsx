@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FiInstagram, FiTwitter, FiFacebook, FiMail, FiPhone } from "react-icons/fi";
+import { FaTiktok } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const socialLinks = [
-  { name: "Instagram", icon: FiInstagram, href: "#" },
-  { name: "Twitter", icon: FiTwitter, href: "#" },
-  { name: "Facebook", icon: FiFacebook, href: "#" },
+  { name: "Facebook", icon: FiFacebook, href: "https://facebook.com/profile.php?id=100078891469550" }, // Approximate or placeholder, user can update URL if needed
+  { name: "Instagram", icon: FiInstagram, href: "https://instagram.com/bolacious_events_and_varieties" },
+  { name: "TikTok", icon: FaTiktok, href: "https://tiktok.com/@bolacious_events" },
 ];
 
 export default function Footer() {
@@ -145,16 +146,16 @@ export default function Footer() {
                   href="tel:+2348109870349"
                   className="text-sm text-white/70 hover:text-secondary transition-colors"
                 >
-                  +234 810 987 0349
+                  0810 987 0349
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <FiMail className="text-secondary mt-1 shrink-0" size={16} />
                 <a
-                  href="mailto:hello@bolaciousevents.com"
-                  className="text-sm text-white/70 hover:text-secondary transition-colors"
+                  href="mailto:bolaciousevents@gmail.com"
+                  className="text-sm text-white/70 hover:text-secondary transition-colors break-all"
                 >
-                  hello@bolaciousevents.com
+                  bolaciousevents@gmail.com
                 </a>
               </li>
               <li>
