@@ -2,6 +2,50 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
+function Typewriter() {
+  const phrases = [
+    "CRAFTING UNFORGETTABLE EXPERIENCES",
+    "NIGERIA'S PREMIER EVENT ARCHITECTS",
+    "EXCELLENCE IN EVERY DETAIL"
+  ];
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+  const [blink, setBlink] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setBlink((prev) => !prev), 500);
+    return () => clearTimeout(timeout);
+  }, [blink]);
+
+  useEffect(() => {
+    if (subIndex === phrases[index].length + 1 && !reverse) {
+      const timeout = setTimeout(() => setReverse(true), 2500);
+      return () => clearTimeout(timeout);
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % phrases.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 30 : 70);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, phrases]);
+
+  return (
+    <span className="text-xs font-bold uppercase tracking-[0.2em] bg-clip-text text-transparent bg-gradient-to-r from-secondary via-white to-secondary bg-[length:200%_auto] animate-[pulse_4s_ease-in-out_infinite]">
+      {`${phrases[index].substring(0, subIndex)}`}
+      <span className={`inline-block w-[2px] h-3 ml-1 align-middle bg-secondary ${blink ? "opacity-100" : "opacity-0"}`}></span>
+    </span>
+  );
+}
 
 export default function Hero() {
   const containerVariants: Variants = {
@@ -48,17 +92,9 @@ export default function Hero() {
           animate="visible"
           className="flex flex-col items-center gap-6"
         >
-          <motion.div variants={itemVariants} className="inline-block">
-            <div className="relative inline-flex items-center gap-3 rounded-full bg-white/5 px-6 py-2 border border-white/10 backdrop-blur-md shadow-2xl">
-              <svg className="w-3.5 h-3.5 text-secondary animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.6 9.4L22 12L14.6 14.6L12 22L9.4 14.6L2 12L9.4 9.4L12 2Z" />
-              </svg>
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-white/90 mt-[1px]">
-                Crafting Unforgettable Experiences
-              </span>
-              <svg className="w-3.5 h-3.5 text-secondary animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.6 9.4L22 12L14.6 14.6L12 22L9.4 14.6L2 12L9.4 9.4L12 2Z" />
-              </svg>
+          <motion.div variants={itemVariants} className="inline-block h-[40px]">
+            <div className="relative inline-flex items-center justify-center min-w-[300px] h-full rounded-full bg-white/5 px-6 border border-white/10 backdrop-blur-md shadow-2xl">
+              <Typewriter />
             </div>
           </motion.div>
 
