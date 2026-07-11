@@ -191,6 +191,20 @@ export default function Footer() {
             </Link>
           </div>
         </div>
+
+        <div className="mt-6 text-center">
+          <a
+            href="https://wa.me/2347040430580"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-white/30 hover:text-secondary transition-colors duration-300"
+          >
+            Developed by{" "}
+            <span className="font-semibold text-white/50 hover:text-secondary transition-colors">
+              Code Dynasty
+            </span>
+          </a>
+        </div>
       </div>
     </footer>
   );
