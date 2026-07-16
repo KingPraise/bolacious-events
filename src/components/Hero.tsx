@@ -166,16 +166,18 @@ export default function Hero() {
 
           <motion.h1
             variants={itemVariants}
-            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
+            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[1.1]"
+            style={{ textShadow: "0 2px 12px rgba(255,255,255,0.5)" }}
           >
-            Creating <span className="text-secondary italic">Memorable</span>{" "}
+            Creating{" "}<span className="italic" style={{ color: "#F59E0B", textShadow: "0 2px 16px rgba(245,158,11,0.6)" }}>Memorable</span>{" "}
             <br className="hidden sm:block" />
             Moments with Excellence
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-white/90 leading-relaxed font-light drop-shadow-lg"
+            className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-800 leading-relaxed font-medium"
+            style={{ textShadow: "0 1px 8px rgba(255,255,255,0.6)" }}
           >
             Transforming your visions into breathtaking realities. From grand weddings to exclusive corporate gatherings, we orchestrate perfection down to the last detail.
           </motion.p>
