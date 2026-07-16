@@ -32,7 +32,7 @@ const services = [
     title: "Catering & Baking",
     description: "Delectable culinary experiences featuring small chops, signature cakes, and full-course meals for your guests.",
     icon: FiCoffee,
-    image: "/gallery/catering-1.jpeg",
+    image: "/gallery/food-egusi-bowl.jpeg",
   },
 ];
 
